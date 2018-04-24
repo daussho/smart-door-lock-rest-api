@@ -10,4 +10,10 @@ class Rest_server extends CI_Controller {
 
         $this->load->view('rest_server');
     }
+
+    public function tes(){
+    	$this->load->helper('url');
+
+        $this->load->view('rest_server');
+    }
 }
