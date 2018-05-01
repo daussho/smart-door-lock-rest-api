@@ -20,7 +20,7 @@
                      <div class="panel-heading"><h2>Click Lock</div>
                      <div class="panel-body">
                         <br>
-                        <form action="cek-user-login.php" method="POST">
+                        <form action="login/cek" method="POST">
                            <div class="form-group">
                               <input type="text" class="form-control" name="id" placeholder="Username" required>
                               </br>

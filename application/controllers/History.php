@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class History extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -18,10 +18,22 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
-	{
+	public function index(){
 		$this->load->helper('url');
+		$this->load->library('session');
+		
+		if (!isset($_SESSION['id'])){
+			redirect('login');
+		}
 
-		$this->load->view('welcome_message');
+		$id = $_SESSION['id'];
+		$this->load->database();
+		$query = $this->db->query("SELECT * FROM history WHERE nim_mahasiswa = ".$id);
+		$this->db->close();
+
+		$data['hasil'] = $query->result();
+
+		$this->load->view('history', $data);
 	}
+
 }
