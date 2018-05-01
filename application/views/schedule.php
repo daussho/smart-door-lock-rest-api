@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <title>Home</title>
+      <title>Schedule</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -11,12 +11,11 @@
          include 'navbar.html';
       ?>
       <center>
-         </br></br></br>
          <div class="container-fluid">
             <div class="row">
                <div class="col-sm-4"></div>
                <div class="col-sm-4">
-                  <br><h2>Schedule</h2>
+                  <br><h2>Schedule</h2><br>
                </div>
                <div class="col-sm-4"></div>
             </div>
@@ -33,104 +32,30 @@
                         <th>Jumat</th>
                      </thead>
                      <tbody>
-                        <tr>
-                        <td>07.00</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        </tr>
+                        <?php
+                           for($i=0; $i<11; $i++){
+                              echo "<tr>";
+                              if ($i<3){
+                                 echo "<td>0".($i+7).".00</td>";   
+                              } else {
+                                 echo "<td>".($i+7).".00</td>";
+                              }
+                              
+                              for($j=0; $j<5; $j++){
+                                 echo "<td>";
+                                 foreach ($hasil as $row){
+                                    $jadwal = (string)$row->kode_waktu;
+                                    $pos = (string)($j+1).(string)($i+1);
 
-                        <tr>
-                        <td>08.00</td>
-                        <td></td>
-                        <td></td>
-                        <td>II3120</td>
-                        <td></td>
-                        <td></td>
-                        </tr>
-
-                        <tr>
-                        <td>09.00</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        </tr>
-
-                        <tr>
-                        <td>10.00</td>
-                        <td>II3140</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        </tr>
-
-                        <tr>
-                        <td>11.00</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        </tr>
-
-                        <tr>
-                        <td>12.00</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>II4140</td>
-                        <td></td>
-                        </tr>
-
-                        <tr>
-                        <td>13.00</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        </tr>
-
-                        <tr>
-                        <td>14.00</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        </tr>
-
-                        <tr>
-                        <td>15.00</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        </tr>
-
-                        <tr>
-                        <td>16.00</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        </tr>
-
-                        <tr>
-                        <td>17.00</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        </tr>
+                                    if($jadwal == $pos){
+                                       echo $row->kode_matkul;
+                                    }
+                                 }
+                                 echo "</td>";
+                              }
+                              echo "</tr>";
+                           }
+                        ?>
                      </tbody>
                   </table>
                   

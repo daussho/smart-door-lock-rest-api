@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Login extends CI_Controller {
+class Schedule extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,34 +20,20 @@ class Login extends CI_Controller {
 	 */
 	public function index(){
 		$this->load->helper('url');
-
-		$this->load->view('login');
-	}
-
-	public function cek(){
 		$this->load->library('session');
-
-		$id = $this->input->post('id');
-		$pwd = $this->input->post('pwd');
-		$hashpwd = hash('sha256', $pwd);
-		//$this->load->view('login');
-
-		$this->load->database();
-		$query = $this->db->query("SELECT * FROM mahasiswa WHERE nim_mahasiswa = ".$id." AND password LIKE '".$hashpwd."'");
-		$count = $query->num_rows();
-		$hasil = $query->result();
-		$this->db->close();
-		//echo $hasil;
-
-		$this->load->helper('url');
-		if ($count == 1){
-			$_SESSION['id'] = $id;
-			foreach ($hasil as $row){
-				$_SESSION['name'] = $row->nama_mahasiswa;
-			}
-			redirect('home'); 
-		} else {
+		
+		if (!isset($_SESSION['id'])){
 			redirect('login');
 		}
+
+		$id = $_SESSION['id'];
+		$this->load->database();
+		$query = $this->db->query("SELECT mengambil.kode_matkul, jadwal.kode_ruangan, jadwal.kode_waktu FROM mengambil INNER JOIN jadwal ON mengambil.kode_matkul = jadwal.kode_matkul WHERE nim_mahasiswa = ".$id);
+		$this->db->close();
+
+		$data['hasil'] = $query->result();
+
+		$this->load->view('schedule', $data);
 	}
+
 }

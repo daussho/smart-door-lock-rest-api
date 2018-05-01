@@ -17,7 +17,7 @@
                <div class="col-sm-4"></div>
                <div class="col-sm-4">
                   <?php
-                     echo "<h1><b> Hello, ".$_SESSION['id']."</h1>";
+                     echo "<h1><b> Hello, ".$_SESSION['name']."</h1>";
                   ?>
                   <h2>Selamat datang di ClickLock ITB</h2>
                   
