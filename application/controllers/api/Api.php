@@ -16,6 +16,10 @@ class Api extends REST_Controller{
 		$room = $this->post('room');
     	$this->set_response($nim, REST_Controller::HTTP_OK);
   	}
+
+  	public function user_post(){
+  		$card_id = $this->post('id');
+  	}
 }
 
 ?>
