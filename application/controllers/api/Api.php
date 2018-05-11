@@ -23,7 +23,7 @@ class Api extends REST_Controller{
     $jam = date("H:i:s");
     $data = ['status' => $data['status']];
     //$data = ['time1' => (strtotime("01:00:00")-strtotime("00:00:00"))];
-    $this->set_response($data);
+    $this->set_response($data['status']);
   }
 
   private function cari_nim($rfid, $room){
@@ -54,13 +54,13 @@ class Api extends REST_Controller{
     //$day = date('l');
     $day = "Monday";
     //$now = date("H:i:s");
-    $now = strtotime("06:50:00");
+    $now = strtotime("07:00:00");
 
     foreach ($hasil as $row){
         //$jadwal = $row->nim;
         if ($day == $row->hari){
           $akhir = strtotime($row->jam) + ($row->lama_pemakaian)*3600;
-          if (($akhir-$now) <= (($row->lama_pemakaian)*3600)+(10*60)){
+          if ($akhir-$now < (($row->lama_pemakaian)*3600)+(10*60) && $akhir-$now >= 0){
             $data['status'] = "ok";
             $data['matkul'] = $row->kode_matkul;
           }

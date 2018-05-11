@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://192.168.9.2/imka';
+$config['base_url'] = 'http://192.168.43.251/imka';
 
 /*
 |--------------------------------------------------------------------------
